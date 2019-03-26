@@ -1,0 +1,25 @@
+{
+    "name": "openeyes-get-io",
+    "version": "0.0.1",
+    "description": "This reads /dev/input/event2 on OPEN-EYES I/O",
+    "dependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/nemax68/node-red-contrib-OpenEyes-GetInput"
+    },
+    "license": "GPL-3.0",
+    "keywords": [
+        "node-red",
+        "OPEN-EYES",
+        "input"
+    ],
+    "node-red": {
+        "nodes": {
+            "pir": "getio/getio.js"
+        }
+    },
+    "author": {
+        "name": "Massimiliano Negretti",
+        "email": "massimiliano.negretti@open-eyes.it"
+    }
+}
