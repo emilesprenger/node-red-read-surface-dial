@@ -5,7 +5,7 @@
     "dependencies": {},
     "repository": {
         "type": "git",
-        "url": "https://github.com/nemax68/node-red-contrib-OpenEyes-GetInput"
+        "url": "https://github.com/nemax68/node-red-contrib-openeyes-get-io"
     },
     "license": "GPL-3.0",
     "keywords": [
