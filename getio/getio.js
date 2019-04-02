@@ -39,53 +39,55 @@ module.exports = function(RED) {
 
 		var FS = require("fs");
 
-    node.status({fill: "green", shape: "dot", text: 'link'});
+        node.status({fill: "green", shape: "dot", text: 'link'});
 
-    var options = { flags: 'r',encoding: null,fd: null,autoClose: true };
-    // This line opens the file as a readable stream
-    var readStream = FS.createReadStream(this.device,options);
+        var options = { flags: 'r',encoding: null,fd: null,autoClose: true };
 
-    readStream.on('data', function(buf){
-      var readElement = parse(buf);
+        // This line opens the file as a readable stream
+        var readStream = FS.createReadStream(this.device,options);
 
-		  if (readElement != undefined ){
-		    if(readElement.type==node.evtype ){
-          var string_val;
-          if(readElement.val)
-            string_val="ON";
-          else
-            string_val="OFF";
+        readStream.on('data', function(buf){
 
-          if(readElement.code==0x100) // BTN_0
-            var mystring = "Input1=" + string_val;
-          else if(readElement.code==0x101) // BTN_1
-            var mystring = "Input2=" + string_val;
-          else if(readElement.code==0x102) // BTN_2
-            var mystring = "Output1=" + string_val;
-          else if(readElement.code==0x103) // BTN_3
-            var mystring = "Output2=" + string_val;
-          else if(readElement.code==0x104) // BTN_4
-            var mystring = "Eserr=" + string_val;
-          else
-            var mystring = "Unkown=" + string_val;
+            var readElement = parse(buf);
 
-          msg.payload=mystring;
-          node.send(msg);
+            if (readElement != undefined ){
+                if(readElement.type==node.evtype ){
+                    var string_val;
 
-		    }
-		  }
-    });
+                    if(readElement.val)
+                        string_val="ON";
+                    else
+                        string_val="OFF";
 
-    readStream.on('error', function(e){
-      node.status({fill: "red", shape: "dot", text: 'no device'});
-      console.error(e);
-    });
+                    if(readElement.code==0x100) // BTN_0
+                        var mystring = "Input1=" + string_val;
+                    else if(readElement.code==0x101) // BTN_1
+                        var mystring = "Input2=" + string_val;
+                    else if(readElement.code==0x102) // BTN_2
+                        var mystring = "Output1=" + string_val;
+                    else if(readElement.code==0x103) // BTN_3
+                        var mystring = "Output2=" + string_val;
+                    else if(readElement.code==0x104) // BTN_4
+                        var mystring = "Eserr=" + string_val;
+                    else
+                        var mystring = "Unkown=" + string_val;
 
-    this.on('close', function(readstream) {
-      readstream.destroy();
-		});
+                    msg.payload=mystring;
+                    node.send(msg);
+                }
+            }
+        });
 
-	}
+        readStream.on('error', function(e){
+            node.status({fill: "red", shape: "dot", text: 'no device'});
+            console.error(e);
+        });
+
+        this.on('close', function(readstream) {
+            readstream.destroy();
+        });
+
+    }
 
 	// Register the node by name. This must be called before overriding any of the
 	// Node functions.

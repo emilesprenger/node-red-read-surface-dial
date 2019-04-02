@@ -1,6 +1,6 @@
 {
     "name": "openeyes-get-io",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "This reads /dev/input/event2 on OPEN-EYES I/O",
     "dependencies": {},
     "repository": {
