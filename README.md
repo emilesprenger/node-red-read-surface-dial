@@ -1,32 +1,23 @@
-# node-red-contrib-openeyes-get-io
+# node-red-read-surface dial
 
 Description
 ===========
 
-This reads /dev/input/event2 from I/O module on OPEN-EYES platform
+Reads /dev/input/event1 for data from surface dial (bluetoot)
 
-![openeyes-get-io-flow](https://github.com/nemax68/node-red-contrib-openeyes-get-io/blob/master/images/flow.png)
+Format 24 bits
 
-A [node.js](http://nodejs.org/) library for detecting event on OPEN-EYES I/O queue
-
+timestamp : 16 bits
+type      :  2 bits
+code      :  2 bits
+value     :  4 bits
 
 Requirements
 ============
 
-* [node.js](http://nodejs.org/) -- tested against v8+
-
-* [node-red](http://nodered.org/)
-
-* Need [OpenEyes](http://open-eyes.it) hardware platform
-
-  ![OpenEyes-image](https://github.com/nemax68/node-red-contrib-openeyes-get-io/blob/master/images/open-eyes.png)
-
 Install
 =======
 
-```shell
-$ npm install openeyes-get-io
-```
 Values
 ========
 
